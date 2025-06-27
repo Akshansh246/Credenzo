@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credenzo-Login</title>
+    <link rel="stylesheet" href="/spreadsheets/style1.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header class="head">
+        <div class="icon">
+            <a href="/"><img src="/images/credenzo.png"></a>
+        </div>
+    </header>
+    <canvas id="c"></canvas>
+    <div class="main-box">
+        <h1>Welcome Back to Credenzo👋</h1>
+        <form action="/login-success" method="post">
+            <% if(!otp){ %>
+                <input type="text" name="accnum" placeholder="Account Number">    
+                <input type="password" name="pin" placeholder="PIN">
+            <% } else{ %>
+                <input type="text" name="otp" placeholder="Enter otp" id="otp-input" >
+                <p id="countdown">
+                    ⚠️Otp expires in <span id="timer">03:00</span>
+                </p>
+                <p id="expired-msg" style="display: none;">
+                    ⚠️OTP expired. Please login again <a href="/login"> here</a>
+                </p>
+                <script>
+                    let duration = 180; // 3 minutes in seconds
+                    const timerEl = document.getElementById('timer');
+                    const otpInput = document.getElementById('otp-input');
+                    const expiredMsg = document.getElementById('expired-msg');
+                    const submitBtn = document.getElementById('submit-btn');
+
+                    const countdown = setInterval(() => {
+                    const minutes = Math.floor(duration / 60);
+                    const seconds = duration % 60;
+
+                    timerEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    duration--;
+
+                    if (duration < 0) {
+                        clearInterval(countdown);
+                        otpInput.disabled = true;
+                        submitBtn.disabled = true;
+                        expiredMsg.style.display = "block";
+                        timerEl.textContent = "00:00";
+                    }
+                    }, 1000);
+                </script>
+            <% } %>
+        
+            <button class="login-btn" type="submit" id="submit-btn">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/create-acc">Create one</a></p>
+    </div>
+    <% if(typeof error != 'undefined' && error ){ %>
+            <div class="popup-error" id="custom-pop">
+                <span><%= error %></span>
+                <button onclick="closePopup()"><span class="close-btn"><i class='bx  bx-eye-closed'  ></i> </span></button>
+            </div>
+    <% } %>
+    <script src="/javascripts/script2.js"></script>
+</body>
+</html>

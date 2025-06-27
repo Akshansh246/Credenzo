@@ -1,0 +1,120 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    color: var(--text-color);
+    scroll-behavior: smooth;
+}
+
+:root{
+    --background-color : #0B1D3A;
+    --text-color : #ffffff;
+    --accent-color : #3b82f6;
+    --secon-accent-color : #02112b;
+    --secondary-color : #d1d5db;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: var(--background-color);
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.bubbles{
+    position: relative;
+    display: flex;
+}
+
+.bubbles span{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #4fc3dc;
+    margin: 0 4px; 
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px #4fc3dc44,
+                0 0 50px #4fc3dc,
+                0 0 100px #4fc3dc;
+    animation: animate 15s linear infinite; 
+    animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even){
+    background: #3b82f6;
+    box-shadow: 0 0 0 10px #3b83f644,
+                0 0 50px #3b82f6,
+                0 0 100px #3b82f6; 
+}
+
+@keyframes animate {
+   0%{
+    transform: translateY(100vh) scale(0);
+   } 
+   100%{
+    transform: translateY(-10vh) scale(1);
+   } 
+}
+
+.head{
+    width: 100%;
+    background-color: transparent;
+    padding: 10px , 5px;
+    display: flex;
+    position: fixed;
+    z-index: 2222;
+}
+
+.icon a img{
+    height: 15vmin;
+    margin: 40px;
+}
+
+.main-box{
+    width: 100vmin;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #02112b5c;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.main-box div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-box div a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: var(--accent-color);
+    text-decoration: none;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.main-box h1, h2{
+    margin-bottom: 10px;
+}
+
+.main-box p{
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.account{
+    font-weight: bolder;
+}

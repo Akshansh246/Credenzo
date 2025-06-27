@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credenzo-Create Account</title>
+    <link rel="stylesheet" href="/spreadsheets/style2.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="head">
+        <div class="icon">
+            <a href="/"><img src="/images/credenzo.png"></a>
+        </div>
+    </header>
+    <canvas id="c"></canvas>
+    <div class="main-box">
+        <h1>Welcome to Credenzo👋</h1>
+        <form action="/created-acc" method="post" id="form">
+            <div class="inner-box">
+                <div>
+                    <p>Full Name</p>
+                    <input type="text" name="fullname" placeholder="Full Name"  required>
+                </div>
+                <div>
+                    <p>Age</p>
+                    <input type="number" name="age" placeholder="age"  required>
+                </div>
+            </div>
+            
+            <div class="inner-box">
+                <div>
+                    <p>Date of Birth</p>
+                    <input type="date" name="dob" required>
+                </div>
+                <div>
+                    <p>Email</p>
+                    <input type="email" name="email" placeholder="Email"  required>
+                </div>
+                <div>
+                    <p>Phone number</p>
+                    <input type="number" name="phn" placeholder="Phone Number" required>
+                </div>
+            </div>
+            <p>Address</p>
+            <input type="text" name="addr" placeholder="Address"  required>
+            <div class="inner-box">
+                <div>
+                    <p>PIN</p>
+                    <input type="password" name="pin" placeholder="PIN"  required id="pin">
+                </div>
+                <div>
+                    <p>Confirm PIN</p>
+                    <input type="password" name="cpin" placeholder="Confirm PIN"  required id="cpin">
+                </div>
+                <div>
+                    <input type="checkbox" id="chk" ><span id="pinBox">Show PIN</span>
+                </div>
+            </div>
+            <input class="login-btn" type="submit" placeholder="Login">
+        </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
+    </div>
+    <div id="custom-alert" class="hidden">
+        <p>❌ PINs do not match. Please Try Again.</p>
+    </div>
+    <script src="/javascripts/script3.js"></script>
+</body>
+</html>

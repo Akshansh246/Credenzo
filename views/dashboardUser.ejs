@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/spreadsheets/style4.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="head">
+        <div class="icon">
+            <a href="#"><img src="/images/credenzo.png"></a>
+        </div>
+        <a href="/logout" class="lo-btn">Logout</a>
+    </header>
+    <div class="fakeHeader"></div>
+    <div class="main-box">
+        <h1>Welcome Back, <%= fullname %> 👋</h1>
+        <div class="container">
+            <div class="curr-bal">
+                <p>Current Balance</p>
+                <h1>₹<%= balance %></h1>
+            </div>
+            <div class="acc-num">
+                <p>Account Number</p>
+                <h1><%= acc_num %></h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="transfer">
+                <h3>Transfer Money</h3>
+                <form action="/transfer" method="post">
+                    <input type="number" placeholder="Receipent Account" name="receiver">
+                    <input type="number" placeholder="Amount" name="amount">
+                    <input type="text" placeholder="Description" name="description">
+                    <input type="hidden" name="sender" value="<%= acc_num %>" />
+                    <input class="btn" type="submit">
+                </form>
+            </div>
+            <div class="withdraw">
+                <h3>Withdraw Money</h3>
+                <form action="/withdraw" method="post">
+                    <input type="number" placeholder="Amount" name="amount">
+                    <input type="password" placeholder="PIN" name="pin">
+                     <input type="hidden" name="account" value="<%= acc_num %>" />
+                    <input class="btn" type="submit">
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="transactions">
+                <h2>Recent Transactions</h2>
+                <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount (₹)</th>
+                        <th>Receiver (if any)</th>
+                        <th>Description</th>
+                        <th>Balance After</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% transactions.forEach(tx => { %>
+                       <tr>
+                        <td><%= new Date(tx.timestamp).toLocaleString() %></td>
+                        <td><%= tx.type %></td>
+                        <td><%= tx.amount %></td>
+                        <td><%= tx.receiver_account_number ? tx.receiver_account_number : '-' %></td>
+                        <td><%= tx.description || '-' %></td>
+                        <td><%= tx.balance_after %></td>
+                       </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <% if (flashMsg) { %>
+            <div class="flash-message <%= flashMsg.type %>">
+            <%= flashMsg.msg %>
+            </div>    
+        <% } %>
+        <button id="chgPin">Change PIN</button>
+    </div>
+    <script src="/javascripts/script4.js"></script>
+</body>
+</html>

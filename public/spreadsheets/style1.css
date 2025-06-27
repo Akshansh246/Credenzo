@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+:root{
+    --background-color : #0b1d3a;
+    --text-color : #ffffff;
+    --accent-color : #3b82f6;
+    --secon-accent-color : #02112b;
+    --secondary-color : #d1d5db;
+}
+
+html, body{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-color);
+    position: relative;
+}
+
+canvas{
+    width: 100%;
+    height: 99.1vh;
+}
+
+.head{
+    width: 100%;
+    background-color: transparent;
+    padding: 10px , 5px;
+    display: flex;
+    position: fixed;
+}
+
+.icon a img{
+    height: 15vmin;
+    margin: 40px;
+}
+
+.main-box{
+    height: 60vmin;
+    width: 70vmin;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    padding: 35px;
+    background-color: var(--text-color);
+    border-radius: 20px;
+}
+
+.main-box h1{
+    margin-bottom: 15px;
+    color: var(--secon-accent-color);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form input{ 
+    border: 1px solid var(--secondary-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 7px;
+    font-size: 2vmin;
+    color: var(--background-color);
+}
+
+form div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-btn{
+    background-color: var(--accent-color);
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    color: var(--text-color);
+    font-size: 2vmin;
+    cursor: pointer;
+}
+
+.login-btn:hover{
+    background-color: var(--background-color);
+}
+
+.main-box p{
+    margin-top: 15px;
+}
+
+.popup-error{
+    position: absolute;
+    position: fixed;
+    font-size: 3vmin;
+    top: 20px;
+    right: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 99999;
+    transition: opacity 1s ease-in-out;
+}
+
+button{
+    margin-left: 10px;
+}
+
+.close-btn, button{
+    background-color: var(--background-color);
+    font-size: 4vmin;
+    color: var(--text-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#countdown{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

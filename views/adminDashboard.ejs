@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Dashboard</title>
+    <link rel="stylesheet" href="/spreadsheets/style5.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="head">
+        <div class="icon">
+            <a href="#"><img src="/images/credenzo.png"></a>
+        </div>
+        <a href="/logout" class="lo-btn">Logout</a>
+    </header>
+    <div class="fakeHeader"></div>
+    <div class="main-box">
+        <h1>Welcome Admin! <%= adminName %> 👋 </h1>
+        <div class="container">
+            <div class="Transferbox">
+                <h2>Admin Fund Transfer</h2>
+                <form action="/admin-transfer" method="POST">
+                    <input type="number" name="receiver" required placeholder="Receiver Account Number">
+                    <input type="number" name="amount" required min="1" placeholder="Amount">
+                    <input type="text" name="description" placeholder="Description(if any)">
+                    <button type="submit">Transfer Funds</button>
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <div class="box">
+                <p>💰Balance</p>
+                <h2>₹<%= totalBalance %></h2>
+            </div>
+            <div class="box">
+                <p>👤Users :</p>
+                <h2><%= totalUsers %></h2>
+            </div>
+            <div class="box">
+                <p>💳Transactions :</p>
+                <h2><%= totalTransactions %></h2>
+            </div>
+        </div>
+        <div class="user-data">
+            <h2>User Data</h2>
+            <table>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Balance</th>
+                </tr>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.acc_num %></td>
+                        <td><%= user.fullname %></td>
+                        <td><%= user.DOB.toLocaleString() %></td>
+                        <td><%= user.phn_num %></td>
+                        <td><%= user.addr %></td>
+                        <td>₹<%= user.balance %></td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+
+        <div class="user-data">
+            <h2>Transactions</h2>
+            <table>
+                <tr>
+                    <th>Account No</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Time</th>
+                    <th>Description</th>
+                    <th>Receiver (if any)</th>
+                </tr>
+                <% transactions.forEach(tx => { %>
+                    <tr>
+                        <td><%= tx.acc_num %></td>
+                        <td><%= tx.type %></td>
+                        <td>₹<%= tx.amount %></td>
+                        <td><%= new Date(tx.timestamp).toLocaleString() %></td>
+                        <td><%= tx.description || '-' %></td>
+                        <td><%= tx.receiver_account_number || '-' %></td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+    </div>
+    <% if (flashMsg) { %>
+        <div class="flash-message" id="flashMsg">
+            <%= flashMsg %>
+        </div>
+    <% } %>
+    <script src="/javascripts/script5.js"></script>
+</body>
+</html>
